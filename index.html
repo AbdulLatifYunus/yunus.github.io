@@ -1,0 +1,341 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="script.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Portal</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+    /* Global Styles */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f9f9f9;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  color: #00698f;
+}
+
+a {
+  text-decoration: none;
+  color: #337ab7;
+}
+
+a:hover {
+  color: #23527c;
+}
+
+/* Header Styles */
+
+header {
+  background-color: #00698f;
+  color: #fff;
+  padding: 1em;
+  text-align: center;
+}
+
+header nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+header nav ul li {
+  margin-right: 20px;
+}
+
+header nav a {
+  color: #fff;
+}
+
+/* Main Styles */
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2em;
+}
+
+section {
+  background-color: #fff;
+  padding: 2em;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  margin-top: 0;
+}
+
+/* Investment Summary Styles */
+
+.card {
+  background-color: #fff;
+  padding: 2em;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+  margin-top: 0;
+}
+
+/* Investment List Styles */
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  padding: 1em;
+  border-bottom: 1px solid #ddd;
+}
+
+li:last-child {
+  border-bottom: none;
+}
+
+/* Button Styles */
+
+button {
+  background-color: #337ab7;
+  color: #fff;
+  border: none;
+  padding: 1em 2em;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #23527c;
+}
+
+
+/* Footer Styles */
+
+footer {
+  background-color: #00698f;
+  color: #fff;
+  padding: 1em;
+  text-align: center;
+  clear: both;
+}
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+  main {
+    flex-direction: column;
+  }
+  section {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: 0.5em;
+  }
+  main {
+    padding: 1em;
+  }
+  section {
+    padding: 1em;
+  }
+}
+</style>
+</head>
+<body>
+    <script>
+        // Get elements
+const navLinks = document.querySelectorAll('nav ul li a');
+const sections = document.querySelectorAll('section');
+const investmentSummary = document.querySelector('.card');
+const investmentList = document.querySelector('#investments ul');
+const accountBalance = document.querySelector('#account p:nth-child(2)');
+const depositButton = document.querySelector('#account button:nth-child(3)');
+const withdrawButton = document.querySelector('#account button:nth-child(4)');
+
+// Add event listeners
+navLinks.forEach((link) => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const sectionId = link.getAttribute('href');
+    const section = document.querySelector(sectionId);
+    section.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+// Investment data
+const investments = [
+  { id: 1, type: 'Stocks', amount: 5000, returns: 1000 },
+  { id: 2, type: 'Bonds', amount: 3000, returns: 500 },
+];
+
+// Render investment summary
+function renderInvestmentSummary() {
+  const totalInvestments = investments.reduce((acc, investment) => acc + investment.amount, 0);
+  const totalReturns = investments.reduce((acc, investment) => acc + investment.returns, 0);
+  investmentSummary.innerHTML = `
+    <h2>Investment Summary</h2>
+    <p>Total Investments: $${totalInvestments}</p>
+    <p>Returns: $${totalReturns}</p>
+  `;
+}
+
+// Render investment list
+function renderInvestmentList() {
+  investmentList.innerHTML = '';
+  investments.forEach((investment) => {
+    const li = document.createElement('li');
+    li.innerHTML = `
+      <h3>${investment.type}</h3>
+      <p>Investment Amount: $${investment.amount}</p>
+      <p>Returns: $${investment.returns}</p>
+    `;
+    investmentList.appendChild(li);
+  });
+}
+
+// Update account balance
+function updateAccountBalance() {
+  const balance = 10000; // Replace with actual account balance
+  accountBalance.textContent = `Account Balance: $${balance}`;
+}
+
+// Deposit and withdraw functionality
+depositButton.addEventListener('click', () => {
+  const amount = prompt('Enter deposit amount:');
+  // Add deposit logic here
+});
+
+withdrawButton.addEventListener('click', () => {
+  const amount = prompt('Enter withdrawal amount:');
+  // Add withdrawal logic here
+});
+
+// Initialize
+renderInvestmentSummary();
+renderInvestmentList();
+updateAccountBalance();
+    </script>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="home">
+            <h1>Welcome to the three brothers investment portal</h1>
+            <p>We offer a range of investment opportunities for individuals and institutions.</p>
+            <button>Learn More</button>
+        </section>
+        <section id="about">
+            <h2>About Us</h2>
+            <p>We are a team of experienced investment professionals dedicated to helping our clients achieve their financial goals.</p>
+        </section>
+        <section id="services">
+            <h2>Our Services</h2>
+            <ul>
+                <li>Investment Management</li>
+                <li>Portfolio Management</li>
+                <li>Financial Planning</li>
+            </ul>
+        </section>
+        <section id="contact">
+            <h2>Get in Touch</h2>
+            <p>Contact us to learn more about our investment opportunities.</p>
+            <form>
+                <input type="text" placeholder="Name">
+                <input type="email" placeholder="Email">
+                <textarea placeholder="Message"></textarea>
+                <button>Send</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Investment Portal</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#dashboard">Dashboard</a></li>
+                <li><a href="#investments">Investments</a></li>
+                <li><a href="#account">Account</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="dashboard">
+            <h1>Dashboard</h1>
+            <p>Welcome to your investment dashboard.</p>
+            <div class="card">
+                <h2>Investment Summary</h2>
+                <p>Total Investments: $10,000</p>
+                <p>Returns: $1,000</p>
+            </div>
+        </section>
+        <section id="investments">
+            <h2>Investments</h2>
+            <ul>
+                <li>
+                    <h3>Investment 1</h3>
+                    <p>Investment Type: Stocks</p>
+                    <p>Investment Amount: $5,000</p>
+                </li>
+                <li>
+                    <h3>Investment 2</h3>
+                    <p>Investment Type: Bonds</p>
+                    <p>Investment Amount: $3,000</p>
+                </li>
+            </ul>
+        </section>
+        <section id="account">
+            <h2>Account</h2>
+            <p>Account Balance: $10,000</p>
+            <button>Deposit</button>
+            <button>Withdraw</button>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Investment App</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
